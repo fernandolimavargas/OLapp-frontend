@@ -1,0 +1,60 @@
+.box-acesso-rapido { 
+    background: #0B0F19;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.acessoRapido-header { 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.items-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.item-acesso-rapido { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    gap: 5px;
+}
+
+.item-acesso-rapido:hover { 
+    background: #22C55E;
+}
+
+.item-registro-treino { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    gap: 5px;
+    padding: 20px;
+}
+.item-registro-treino:hover { 
+    background: #22C55E;
+}
+
+.item-analise-corporativa { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    gap: 5px;
+}
+
+.item-analise-corporativa:hover { 
+    background: #22C55E;
+}

@@ -1,0 +1,127 @@
+.criar-modelo-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.criar-modelo-titulo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 25px;
+}
+
+.input-modelo {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 25px;
+    transition: all 0.2s ease;
+}
+
+.input-modelo:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.campo-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #f8f9fb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.campo-card input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+}
+
+.campo-card select {
+    width: 180px;
+    padding: 10px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    background: white;
+}
+
+.campo-card input:focus,
+.campo-card select:focus {
+    outline: none;
+    border-color: #0d6efd;
+}
+
+.acoes-campo {
+    display: flex;
+    align-items: center;
+}
+
+.btn-remover {
+    border: none;
+    background: #dc3545;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.btn-remover:hover {
+    background: #bb2d3b;
+}
+
+.botoes-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.btn-adicionar {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-adicionar:hover {
+    background: #0b5ed7;
+}
+
+.btn-salvar {
+    background: #198754;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-salvar:hover {
+    background: #157347;
+}
+
+.sem-campos {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+}

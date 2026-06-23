@@ -1,0 +1,155 @@
+.dashboard {
+    background: #010409;
+    
+}
+
+.dashboard-header { 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+
+
+.dashboard-header-right h1 { 
+    color: #E5E7EB;
+}
+
+.dashboard-header-right p { 
+    color: #94A3B8;
+}
+
+.dashboard-header-left { 
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #1E293B;
+    color: #E5E7EB;
+}
+
+.btn-outline:hover {
+    background: #0F172A;
+    border-color: #334155;
+}
+
+.btn-primary {
+    background: #22C55E;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #16A34A;
+    transform: translateY(-1px);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.card { 
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);;
+    transition: all 0.2s ease;
+    min-height: 110px;
+    min-height: 130px;
+    background: #0B0F19;
+}
+
+.card:hover { 
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.08);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header p {
+    font-size: 14px;
+    color: #C9D4F5;
+    font-weight: 500;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantidade {
+    font-size: 28px;
+    font-weight: 700;
+    color: #F5F7FF;
+}
+
+.percent {
+    color: #22C55E;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.descricao {
+    font-size: 13px;
+    color: #B0B8D9;
+}
+
+
+.body { 
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+
+}
+
+.card-clientes-ativos {
+    background: linear-gradient(
+        135deg,
+        rgba(34,197,94,0.15),
+        rgba(34,197,94,0.05)
+    );
+    border: 1px solid rgba(34,197,94,0.2);
+}
+
+@media (max-width: 768) { 
+    .dashboard-header { 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .dashboard-header-left { 
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

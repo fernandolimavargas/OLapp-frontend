@@ -1,0 +1,115 @@
+body { 
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container{ 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background: radial-gradient(circle at top, #0b1f36, #000); 
+    color: white;
+}
+
+.logo-card{ 
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logo-card h1 { 
+    color: #22c55e;
+    margin: 0;
+}
+
+.logo-card p { 
+    color: #9ca3af;
+}
+
+.login-card { 
+    width: 360px;
+    background: #0f172a;
+    padding: 30px; 
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.login-card h2 { 
+    text-align: center;
+    color: #22c55e
+}
+
+.subtitle { 
+    text-align: center;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.tabs { 
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #1e293b;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.tabs button { 
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 6px;
+    transition: color 0.2s ease;
+}
+
+.tab-slider { 
+    position: absolute;
+    top: 4px;
+    bottom: 4px; 
+    left: 4px;
+    width: calc(50% - 4px);
+    background: #020617;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.tab-slider.right { 
+    left: calc(50%);
+}
+
+.tabs .active { 
+    color: white;
+    font-weight: 500;
+}
+
+input { 
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border:none; 
+    background: black;
+    color: white;
+}
+
+.btn-login{ 
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #22c55e;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root { 
+    --primary: #22C55E; 
+    --primary-dark: #16A34A; 
+
+    /* 🖤 BACKGROUND */
+    --bg-main: #020617;
+    --bg-card: #0F172A;
+    --bg-soft: #111827;
+
+    /* ✍️ TEXTOS */
+    --text-main: #E5E7EB;
+    --text-secondary: #94A3B8;
+}
+
+
+body { 
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html, body, #root {
+    height: 100%;
+}
