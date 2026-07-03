@@ -1,11 +1,23 @@
 import "../style/sidebar.css"
 import { Home, Users, FileText, ChevronRight, Dumbbell, MessageCircle} from "lucide-react"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { menusItems } from "./MenuItens";
 
 function Sidebar({isOpen}: {isOpen: boolean}) { 
     const [openMenus, setOpenMenus] = useState<string[]>([]);
+    const [nomeUsuario, setNomeUsuario] = useState("");
+
+    useEffect(() => {
+    const usuarioStorage = localStorage.getItem("usuarioLogado");
+
+    if (!usuarioStorage)
+        return;
+
+    const usuario = JSON.parse(usuarioStorage);
+
+    setNomeUsuario(usuario.nome);
+}, []);
 
     const toggleMenu = (label: string) => { 
         setOpenMenus(prev => 
@@ -22,7 +34,7 @@ function Sidebar({isOpen}: {isOpen: boolean}) {
                     src="https://i.pravatar.cc/40" 
                     alt="user"
                     className="profile-img"/>
-                <span className="user-name">Fernando Vargas</span>
+                <span className="user-name">{nomeUsuario}</span>
             </div>
             <nav>
                 {menusItems.map((item) => { 

@@ -11,13 +11,19 @@ export default function CadastrarAvaliacao() {
     const [peso, setPeso] = useState<string>("");
     const [altura, setAltura] = useState<string>("");
 
-    const [avaliacoesModelos, setAvaliacoesModelos] = useState<AvaliacaoModelo[]>([]);
+    const [modelosPadrao, setModelosPadrao] = useState<AvaliacaoModelo[]>([]);
+    const [modelosPersonalizados, setModelosPersonalizados] = useState<AvaliacaoModelo[]>([]);
     const [valoresCampos, setValoresCampos] = useState<Record<number, string>>({});
 
 
     const [tabSelecionada, setTabSelecionada] = useState<number>(1);
     
     const [idProfessor, setIdProfessor] = useState(0); 
+
+    const avaliacoesModelos = [
+        ...modelosPadrao,
+        ...modelosPersonalizados
+    ];
 
     useEffect(() => {
         const usuarioStorage = localStorage.getItem("usuarioLogado");
@@ -29,7 +35,7 @@ export default function CadastrarAvaliacao() {
 
             buscarClientes(usuario.id); 
 
-            buscarCamposDoModeloPadrao();
+            buscarCamposDoModelo(usuario.id);
         }
     }, []);
 
@@ -38,20 +44,27 @@ export default function CadastrarAvaliacao() {
         setClientes(dados); 
     }
 
-    async function buscarCamposDoModeloPadrao() { 
-        const dados = await buscarAvaliacoesModelo();
+    async function buscarCamposDoModelo(idProfessorAtual: number) {
+        const resposta = await buscarAvaliacoesModelo(idProfessorAtual);
 
-        setAvaliacoesModelos(dados); 
+        setModelosPadrao(resposta.padroes);
+        setModelosPersonalizados(resposta.personalizados);
 
-        if (dados.length > 0) {
-            setTabSelecionada(dados[0].idAvaliacao);
+        const modelos = [
+            ...resposta.padroes,
+            ...resposta.personalizados
+        ];
+
+        if (modelos.length > 0) {
+            setTabSelecionada(modelos[0].idAvaliacao);
         }
 
         const valoresIniciais: Record<number, string> = {};
-        dados.forEach(modelo => {
+
+        modelos.forEach(modelo => {
             modelo.campos.forEach(campo => {
-                if (campo.tipo === 'lista') {
-                    valoresIniciais[campo.idCampo] = 'Normal';
+                if (campo.tipo === "lista") {
+                    valoresIniciais[campo.idCampo] = "Normal";
                 }
             });
         });
@@ -157,7 +170,9 @@ export default function CadastrarAvaliacao() {
                             className="avaliacao-tabs"
                         >
                             {avaliacoesModelos.map((modelo) => (
-                                <Tab key={modelo.idAvaliacao} value={modelo.idAvaliacao} label={modelo.nomeAvaliacao} />
+                                <Tab key={modelo.idAvaliacao} 
+                                value={modelo.idAvaliacao} 
+                                label={modelo.padrao ? modelo.nomeAvaliacao : `⭐ ${modelo.nomeAvaliacao}`} />
                             ))}
                         </Tabs>
 

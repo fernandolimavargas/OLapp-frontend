@@ -30,12 +30,17 @@ export interface CampoAvaliacao {
     ordem: number;
 }
 
-export async function buscarAvaliacoesModelo(): Promise<AvaliacaoModelo[]> { 
+export interface ModelosAvaliacaoResponse {
+    padroes: AvaliacaoModelo[];
+    personalizados: AvaliacaoModelo[];
+}
+
+export async function buscarAvaliacoesModelo(idUsuario : number): Promise<ModelosAvaliacaoResponse> { 
     try { 
-        const response = await api.get("/avaliacao/buscar_campos_modelo_padrao"); 
+        const response = await api.get(`/avaliacao/buscar_campos_modelo_padrao/${idUsuario}`); 
         return response.data;
     } catch (error) { 
         console.log(error);
-        return [];
+        return { padroes: [], personalizados: [] };
     }
 }

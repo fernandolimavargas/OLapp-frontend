@@ -1,127 +1,120 @@
-.criar-modelo-container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+/* Escopo principal da página */
+.modelo-page-container {
+  --radius: 0.625rem;
+  background-color: #0b0f17 !important; /* Fundo escuro idêntica ao design original */
+  color: #f8fafc !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-.criar-modelo-titulo {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 25px;
+/* Ajuste de Alinhamento da Lupa na Barra de Busca */
+.modelo-page-container .relative {
+  display: relative;
+  width: 100%;
 }
 
-.input-modelo {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #dcdfe6;
-    border-radius: 8px;
-    font-size: 15px;
-    margin-bottom: 25px;
-    transition: all 0.2s ease;
+.modelo-page-container .relative .lucide-search {
+  color: #64748b !important;
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
 }
 
-.input-modelo:focus {
-    outline: none;
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+/* Forçar o input de busca a ter preenchimento correto para não sobrepor a lupa */
+.modelo-page-container .local-glass-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  padding-left: 2.5rem !important; /* Espaço para o ícone da lupa não sobrepor o texto */
+  width: 100%;
 }
 
-.campo-card {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    background: #f8f9fb;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
+.modelo-page-container .local-glass-card::placeholder {
+  color: #64748b !important;
 }
 
-.campo-card input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #dcdfe6;
-    border-radius: 6px;
+/* Efeito Hover nos Cards de Listagem */
+.modelo-page-container .local-glass-card-hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.campo-card select {
-    width: 180px;
-    padding: 10px;
-    border: 1px solid #dcdfe6;
-    border-radius: 6px;
-    background: white;
+.modelo-page-container .local-glass-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.35) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
-.campo-card input:focus,
-.campo-card select:focus {
-    outline: none;
-    border-color: #0d6efd;
+/* Botão Principal em Degradê Verde */
+.modelo-page-container .local-btn-gradient {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 0 1.25rem !important;
+  height: 2.75rem !important;
+  border-radius: 8px !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  cursor: pointer;
 }
 
-.acoes-campo {
-    display: flex;
-    align-items: center;
+.modelo-page-container .local-btn-gradient:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.25) !important;
+  opacity: 0.95 !important;
 }
 
-.btn-remover {
-    border: none;
-    background: #dc3545;
-    color: white;
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.2s;
+/* Badges (Métricas) dentro dos Cards */
+.modelo-page-container .local-badge {
+  background-color: #1e293b !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.75rem !important;
 }
 
-.btn-remover:hover {
-    background: #bb2d3b;
+/* ==========================================================================
+   Correções de Alinhamento e Cores para os Modais (Dialog / AlertDialog)
+   ========================================================================== */
+
+/* Garante que o fundo e o texto do modal acompanhem o tema escuro */
+[data-radix-pointer-down-context] [role="dialog"],
+.bg-card {
+  background-color: #111827 !important; /* Cinza escuro para modais */
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-.botoes-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
+/* Inputs internos do modal */
+.modelo-page-container input, 
+[role="dialog"] input {
+  background-color: #0b0f17 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 0.75rem !important;
+  height: 2.5rem !important;
 }
 
-.btn-adicionar {
-    background: #0d6efd;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: 0.2s;
+.modelo-page-container input:focus, 
+[role="dialog"] input:focus {
+  border-color: #22c55e !important;
+  outline: none !important;
 }
 
-.btn-adicionar:hover {
-    background: #0b5ed7;
-}
-
-.btn-salvar {
-    background: #198754;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.btn-salvar:hover {
-    background: #157347;
-}
-
-.sem-campos {
-    text-align: center;
-    padding: 20px;
-    color: #6c757d;
-    font-style: italic;
+/* Alinhamento dos sub-cards de métricas adicionadas no modal */
+.space-y-3 > div {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
 }

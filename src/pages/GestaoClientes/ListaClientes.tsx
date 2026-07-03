@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react"
 import "../../style/GestaoClientes/listaClientes.css"
-import { buscarAlunos, type Cliente, type Clientes, inserirCliente} from "@/services/ListaClientes/listaClienteService";
+import { atualizarCliente, buscarAluno, buscarAlunos, type Cliente, type Clientes, inserirCliente} from "@/services/ListaClientes/listaClienteService";
 
 function ListaClientes() {
     const [loading, setLoading] = useState(true); 
@@ -12,11 +12,13 @@ function ListaClientes() {
     const[objetivo, setObjetivo] = useState(""); 
     const[idProfessor, setIdProfessor] = useState(0); 
     const[nomeProfessor, setNomeProfessor] = useState("");
-    const[cliente, setCliente] = useState<Cliente>(); 
+    const [cliente, setCliente] = useState<Cliente | null>(null);
 
     const[buscaNome, setBuscaNome] = useState(""); 
 
     const[clientes, setClientes] = useState<Clientes[]>([])
+
+    const [idSelecionado, setIdSelecionado] = useState<number | null>(null);
 
     function formatarCPF(valor: string) {
         return valor
@@ -42,11 +44,11 @@ function ListaClientes() {
         return valor;
     }
 
-    async function carregarClientes() { 
+
+    async function carregarClientes() {
         const dados = await buscarAlunos(idProfessor, buscaNome);
-        if (dados.length > 0)
-            setClientes(dados); 
-    } 
+        setClientes(dados);
+    }
 
     useEffect(() => {
         const usuarioStorage =
@@ -68,39 +70,95 @@ function ListaClientes() {
 
     }, [idProfessor, buscaNome]);
 
-    async function addCliente (
-        e:React.FormEvent<HTMLFormElement>
-    )  {
-        e.preventDefault(); 
-        
-        setLoading(true)
+    async function addCliente(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            const clienteRequest: Cliente = {
+                id: cliente?.id,
+                nome,
+                dataNascimento,
+                cpf,
+                email,
+                telefone,
+                objetivo,
+                idProfessor,
+                nomeProfessor,
+                idPerfil: [2]
+            };
 
-        const cliente: Cliente = { 
-            nome,
-            dataNascimento, 
-            cpf, 
-            email,
-            telefone,
-            objetivo, 
-            idProfessor,
-            nomeProfessor,
-            idPerfil: [2]
+            if (cliente) {
+
+                const sucesso = await atualizarCliente(clienteRequest);
+
+                if (sucesso) {
+
+                    await carregarClientes();
+
+                    await carregarDadosCliente(cliente.id!);
+
+                }
+
+            } else {
+
+                const idAluno = await inserirCliente(clienteRequest);
+
+                if (idAluno > 0) {
+
+                    await carregarClientes();
+
+                    setIdSelecionado(idAluno);
+
+                    await carregarDadosCliente(idAluno);
+
+                }
+
+            }
+
         }
-        const data = await inserirCliente(cliente); 
-        if (data) { 
+        finally {
+
             setLoading(false);
-            limparCampos();
-            carregarClientes()
+
         }
     }
 
-    function limparCampos() { 
-        setNome(""); 
-        setDataNascimento(""); 
-        setCPF(""),
-        setEmail(""), 
-        setTelefone(""), 
-        setObjetivo("")
+    function limparCampos() {
+    setCliente(null);
+    setIdSelecionado(null);
+    setNome("");
+    setDataNascimento("");
+    setCPF("");
+    setEmail("");
+    setTelefone("");
+    setObjetivo("");
+    setLoading(false);
+}
+
+    async function carregarDadosCliente(idAluno: number) {
+
+        const dados = await buscarAluno(idProfessor, idAluno);
+
+        if (!dados)
+            return;
+
+        setCliente(dados);
+
+        setNome(dados.nome);
+        setDataNascimento(
+            dados.dataNascimento?.split("T")[0] ?? ""
+        );
+        setCPF(dados.cpf);
+        setEmail(dados.email);
+        setTelefone(dados.telefone);
+        setObjetivo(dados.objetivo);
+    }
+
+    async function selecionarCliente(idAluno: number) {
+
+        setIdSelecionado(idAluno);
+
+        await carregarDadosCliente(idAluno);
     }
 
     return (
@@ -121,7 +179,13 @@ function ListaClientes() {
                         <h3>Clientes</h3>
                         <div className="items-clientes">
                             {clientes.map((c) => (
-                                <div key={c.id} className="cliente-item">
+                                <div
+                                    key={c.id}
+                                    className={`cliente-item ${
+                                        idSelecionado === c.id ? "cliente-item-selecionado" : ""
+                                    }`}
+                                    onClick={() => selecionarCliente(c.id)}
+                                >
                                     <div className="cliente-avatar"> 
                                         {c.nome.charAt(0)}
                                     </div>
@@ -137,9 +201,32 @@ function ListaClientes() {
                 </div>
 
                 <div className="adicionar-cliente card">
-                    <h2>Adicionar Novo Cliente</h2>
-                    <form className="form-cliente"
-                        onSubmit={addCliente}>
+                    <div className="form-header">
+                        <div className="form-header-info">
+                            <h2>
+                                {cliente ? "Editar Cliente" : "Adicionar Novo Cliente"}
+                            </h2>
+                            {cliente && (
+                                <span className="cliente-editando">
+                                    Editando:
+                                    <strong> {cliente.nome}</strong>
+                                </span>
+                            )}
+                        </div>
+                        {cliente && (
+                            <button
+                                type="button"
+                                className="btn btn-secondary btn-novo"
+                                onClick={limparCampos}
+                            >
+                                + Novo Cliente
+                            </button>
+                        )}
+                    </div>
+                    <form
+                        className="form-cliente"
+                        onSubmit={addCliente}
+                    >
                         <div className="form-group">
                             <label>Nome Completo</label>
                             <input className="input" 
@@ -195,9 +282,12 @@ function ListaClientes() {
 
                         </div>
 
-                        <button type="submit" 
+                        <button
+                            type="submit"
                             className="form-cliente btn-primary"
-                            >Adicionar Cliente</button>
+                        >
+                            {cliente ? "Salvar Alterações" : "Adicionar Cliente"}
+                        </button>
                     </form>
 
                 </div>
