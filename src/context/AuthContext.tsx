@@ -29,6 +29,11 @@ type AuthContextType = {
     logout: () => void;
 }
 
+type LoginRequest = { 
+  usuario: string;
+  senha: string;
+}
+
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -39,8 +44,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function login(usuario: string, senha: string) {
     try {
+      const loginRequest: LoginRequest = { usuario, senha };
       console.log("Entrou na função login")
-      const result = await api.post("/auth/login", null, { params: { usuario, senha}});
+      const result = await api.post("/auth/login", loginRequest);
 
       console.log("Chamou")
 
