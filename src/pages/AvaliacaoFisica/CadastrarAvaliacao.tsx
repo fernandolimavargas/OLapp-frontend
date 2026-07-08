@@ -26,7 +26,7 @@ export default function CadastrarAvaliacao() {
     ];
 
     useEffect(() => {
-        const usuarioStorage = localStorage.getItem("usuarioLogado");
+        const usuarioStorage = localStorage.getItem("usuario");
 
         if (usuarioStorage) {
             const usuario = JSON.parse(usuarioStorage);
