@@ -72,7 +72,7 @@ export default function CriarNovoModelo() {
   const [idModeloEdicao, setIdModeloEdicao] = useState<number | null>(null);
 
   useEffect(() => {
-    const usuarioStorage = localStorage.getItem("usuarioLogado");
+    const usuarioStorage = localStorage.getItem("usuario");
     if (usuarioStorage) {
       const usuario = JSON.parse(usuarioStorage);
       setIdProfessor(usuario.id);

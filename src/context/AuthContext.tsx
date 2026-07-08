@@ -13,6 +13,11 @@ type AuthUsuario = {
   perfis: Perfis[]
 }; 
 
+type Token = { 
+  token: string, 
+  usuario: AuthUsuario
+}
+
 type Perfis = { 
   id: number, 
   nome: string
@@ -20,7 +25,7 @@ type Perfis = {
 
 type AuthContextType = {
     usuario: Usuario | null; 
-    login: (usuario: string, senha: string) => Promise<AuthUsuario>;
+    login: (usuario: string, senha: string) => Promise<Token>;
     logout: () => void;
 }
 

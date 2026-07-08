@@ -32,7 +32,8 @@ export default function TopBar({ toggleSideBar, isAdmin }: Props) {
     }
 
     function goSair() {
-        localStorage.removeItem("usuarioLogado"); // ou o que tu usa
+        localStorage.removeItem("token");
+        localStorage.removeItem("usuario");
         navigate("/");
     }
 

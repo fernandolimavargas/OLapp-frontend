@@ -52,7 +52,7 @@ function ListaClientes() {
 
     useEffect(() => {
         const usuarioStorage =
-            localStorage.getItem("usuarioLogado");
+            localStorage.getItem("usuario");
 
         if (usuarioStorage) {
             const usuario = JSON.parse(usuarioStorage);

@@ -10,9 +10,10 @@ export default function Dashboard() {
     const[usuario, setUsuario] = useState<any>(null); 
 
     useEffect(() => { 
-        const usuarioStorage = localStorage.getItem("usuarioLogado");
+        const token = localStorage.getItem("token");
+        const usuarioStorage = localStorage.getItem("usuario");
 
-        if (usuarioStorage) {
+        if (token != null && usuarioStorage != null) {
                 setUsuario(JSON.parse(usuarioStorage));
             }
 

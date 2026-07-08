@@ -23,14 +23,19 @@ export default function Login() {
             console.log("entrou no try")
             const usuarioLogado = await login(usuario, senha); 
 
-            if (usuarioLogado.id == 0) { 
+            if (!usuarioLogado.token) { 
                 alert("Usuário/Senha incorreto ou usuário não existe");
                 return; 
             }
 
             localStorage.setItem(
-                "usuarioLogado", 
-                JSON.stringify(usuarioLogado)
+                "token", 
+                JSON.stringify(usuarioLogado.token)
+            )
+
+            localStorage.setItem(
+                "usuario", 
+                JSON.stringify(usuarioLogado.usuario)
             )
 
             navigate("/dashboard");
