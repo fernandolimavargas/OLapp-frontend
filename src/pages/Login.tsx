@@ -14,12 +14,15 @@ export default function Login() {
     
     const[modo, setModo] = useState<"login" | "cadastro">("login");
 
+    const[loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
     const { login } = useAuth();
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => { 
         e.preventDefault();
         try {
+            setLoading(true);
             console.log("entrou no try")
             const usuarioLogado = await login(usuario, senha); 
 
@@ -41,6 +44,8 @@ export default function Login() {
             navigate("/dashboard");
         } catch (error) {
             alert("ERRO COMPLETO: " + error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -60,6 +65,21 @@ export default function Login() {
 
     return (
         <div className="login-container">
+            {loading && (
+                <div className="loading-overlay">
+                    <div className="loading-card">
+                        <div className="spinner"></div>
+
+                        <h3>Autenticando...</h3>
+
+                        <p>
+                            Aguarde enquanto verificamos suas credenciais.
+                        </p>
+                    </div>
+                </div>
+            )}
+
+
             <div className="logo-card">
                 <h1>OLapp</h1>
                 <p>Monitoramento de Carga</p>
@@ -134,5 +154,7 @@ export default function Login() {
                 </form>
             </div>
         </div>
+
+        
     );
 }

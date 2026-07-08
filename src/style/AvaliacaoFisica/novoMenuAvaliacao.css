@@ -1,14 +1,14 @@
 /* Escopo principal da página */
 .modelo-page-container {
   --radius: 0.625rem;
-  background-color: #0b0f17 !important; /* Fundo escuro idêntica ao design original */
+  background-color: #010409 !important; /* Fundo escuro idêntica ao design original */
   color: #f8fafc !important;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 /* Ajuste de Alinhamento da Lupa na Barra de Busca */
 .modelo-page-container .relative {
-  display: relative;
+  position: relative;
   width: 100%;
 }
 
@@ -24,10 +24,11 @@
 
 /* Forçar o input de busca a ter preenchimento correto para não sobrepor a lupa */
 .modelo-page-container .local-glass-card {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
   color: #ffffff !important;
   border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
   padding-left: 2.5rem !important; /* Espaço para o ícone da lupa não sobrepor o texto */
   width: 100%;
 }
@@ -38,14 +39,14 @@
 
 /* Efeito Hover nos Cards de Listagem */
 .modelo-page-container .local-glass-card-hover {
-  background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: #0B0F19 !important;
+  border: 1px solid rgba(255,255,255,.05) !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .modelo-page-container .local-glass-card-hover:hover {
-  transform: translateY(-2px);
-  border-color: rgba(34, 197, 94, 0.35) !important;
+transform: translateY(-3px);
+  border-color: rgba(255,255,255,.08) !important;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
@@ -91,7 +92,7 @@
 /* Garante que o fundo e o texto do modal acompanhem o tema escuro */
 [data-radix-pointer-down-context] [role="dialog"],
 .bg-card {
-  background-color: #111827 !important; /* Cinza escuro para modais */
+  background-color: #0B0F19 !important; /* Cinza escuro para modais */
   color: #f8fafc !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
@@ -99,7 +100,7 @@
 /* Inputs internos do modal */
 .modelo-page-container input, 
 [role="dialog"] input {
-  background-color: #0b0f17 !important;
+  background-color: #010409 !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   border-radius: 6px !important;

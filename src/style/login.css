@@ -113,3 +113,18 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+.loading-overlay{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    backdrop-filter: blur(3px);
+
+    z-index:999;
+}
