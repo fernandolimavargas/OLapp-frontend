@@ -32,7 +32,8 @@ export const menusItems = [
             children: [
                 { label: "Registro de Treino", path: "/treinos/registro" },
                 { label: "Histórico de Treinos", path: "/treinos/historico" },
-                { label: "Análise de Performance", path: "/treinos/analise" }
+                { label: "Análise de Performance", path: "/treinos/analise" },
+                { label: "Videos", path: "/videos"}
             ]
         },
         { 

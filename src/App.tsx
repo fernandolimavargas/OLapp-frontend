@@ -10,6 +10,7 @@ import Usuarios from './pages/Usuarios';
 import CriarNovoModelo from './pages/AvaliacaoFisica/NovoMenuAvaliacao';
 import HistoricoAvaliacao from './pages/AvaliacaoFisica/HistoricoAvaliacao';
 import ProtectRoute from './routes/ProtectRoute';
+import VideosAulas from './pages/Videos/VideosAulas';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <Route path='/avaliacaoFisica/NovoMenuAvaliacao' element={<CriarNovoModelo />} />
             <Route path='/avaliacaoFisica/HistoricoAvaliacao' element={<HistoricoAvaliacao />} />
             <Route path='/usuarios' element={<Usuarios />} />
+            <Route path="/videos" element={<VideosAulas />} />
           </Route>
         </Route>
 
